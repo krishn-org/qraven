@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Report Issue</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+    <script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#000000" data-border-radius="small"></script>
+</head>
+<body class="bg-gray-50 max-w-md mx-auto min-h-screen relative">
+    <header class="fixed top-0 max-w-md w-full bg-white shadow-sm z-50">
+        <nav class="px-4 py-3 flex items-center">
+            <button onclick="history.back()" class="text-gray-600">
+                <i class="fas fa-arrow-left text-lg"></i>
+            </button>
+            <h1 class="ml-4 text-lg font-semibold">Report Issue</h1>
+        </nav>
+    </header>
+    <main class="pt-16 pb-20 px-4 max-w-md mx-auto">
+        <form id="reportForm" class="mb-8">
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                <textarea class="w-full border border-gray-200 rounded-lg p-3 h-32 focus:ring-custom focus:border-custom" placeholder="Please describe the issue in detail..."></textarea>
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Screenshots</label>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                    <input type="file" id="fileUpload" class="hidden" multiple="" accept="image/*"/>
+                    <label for="fileUpload" class="cursor-pointer">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                        <p class="text-sm text-gray-500">Click to upload images</p>
+                    </label>
+                </div>
+                <div id="imagePreview" class="grid grid-cols-3 gap-2 mt-2"></div>
+            </div>
+            <button type="submit" class="w-full bg-custom text-white py-3 !rounded-button font-medium">Submit Report</button>
+        </form>
+        <div id="confirmation" class="hidden bg-white rounded-lg p-6 text-center mb-8">
+            <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <i class="fas fa-check text-2xl text-green-500"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Thank You for Your Report</h3>
+            <p class="text-gray-600 mb-4">We&#39;ll review your submission and take appropriate action.</p>
+            <button onclick="newReport()" class="text-custom font-medium">Submit Another Report</button>
+        </div>
+        <section>
+            <h2 class="text-lg font-semibold mb-4">Previous Scam Reports</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg p-4 shadow-sm">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm text-gray-500">March 18, 2024 - 2:15 PM</span>
+                        <span class="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded">Pending</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">(2/5)</span>
+                    </div>
+                    <p class="text-gray-700 mb-2">Encountered a potential scam seller. The profile looked suspicious with fake reviews and unrealistic prices.</p>
+                    <img src="qr1.png" class="w-16 h-16 rounded object-cover" alt="Suspicious QR Code Screenshot"/>
+                </div>
+                <div class="bg-white rounded-lg p-4 shadow-sm mt-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm text-gray-500">December 30, 2024 - 10:23 AM</span>
+                        <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded">Resolved</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <div class="flex text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">(2/5)</span>
+                    </div>
+                    <p class="text-gray-700">Received phishing messages claiming to be from support team asking for login credentials.</p>
+                    <img src="qr2.png" class="w-16 h-16 rounded object-cover" alt="Fake QR Code Payment Screenshot"/>
+                </div>
+            </div>
+        </section>
+    </main>
+    <nav class="fixed bottom-0 max-w-md w-full bg-white border-t border-gray-200">
+        <div class="grid grid-cols-2 h-16">
+            <a href="/" class="flex flex-col items-center justify-center text-gray-600">
+                <i class="fas fa-home text-xl mb-1"></i>
+                <span class="text-xs">Home</span>
+            </a>
+            <button onclick="scrollToTop()" class="flex flex-col items-center justify-center text-custom">
+                <i class="fas fa-plus-circle text-xl mb-1"></i>
+                <span class="text-xs">New Report</span>
+            </button>
+        </div>
+    </nav>
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        function newReport() {
+            document.getElementById('reportForm').reset();
+            document.getElementById('confirmation').classList.add('hidden');
+            document.getElementById('reportForm').classList.remove('hidden');
+            document.getElementById('imagePreview').innerHTML = '';
+        }
+        document.getElementById('fileUpload').addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            for(let file of e.target.files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.className = 'relative';
+                    div.innerHTML = `
+                        <img src="${e.target.result}" class="w-full h-24 object-cover rounded">
+                        <button type="button" class="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                    `;
+                    preview.appendChild(div);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            document.getElementById('confirmation').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

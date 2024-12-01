@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Scanner</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://ai-public.creatie.ai/gen_page/tailwind-custom-v2.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.5?plugins=forms@0.5.7,typography@0.5.13,aspect-ratio@0.4.2,container-queries@0.1.1"></script>
+<script src="https://ai-public.creatie.ai/gen_page/tailwind-config.min.js" data-color="#9DB8CA" data-border-radius="small"></script>
+</head>
+<body class="bg-gray-900 h-screen">
+<div class="relative h-full w-[375px] mx-auto">
+  <header class="fixed top-0 w-[375px] z-50 flex justify-between items-center px-4 py-3 bg-gray-900/80 backdrop-blur">
+    <button class="text-white">
+      <i class="fas fa-cog text-xl"></i>
+    </button>
+    <span class="text-white text-sm font-medium">Align QR code within frame</span>
+    <button class="text-white">
+      <i class="fas fa-history text-xl"></i>
+    </button>
+  </header>
+
+  <main class="h-full flex flex-col items-center justify-center">
+    <div class="relative w-[280px] h-[280px]">
+      <div class="absolute inset-0 border-2 border-white/30">
+        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-white"></div>
+        <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-white"></div>
+        <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-white"></div>
+        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-white"></div>
+      </div>
+      <div class="absolute top-1/2 left-0 w-full h-[2px] bg-white/50 animate-scan"></div>
+    </div>
+    <div class="mt-6 flex items-center gap-2">
+      <div class="w-2 h-2 rounded-full bg-white/30 animate-pulse"></div>
+      <div class="w-2 h-2 rounded-full bg-white/30 animate-pulse delay-100"></div>
+      <div class="w-2 h-2 rounded-full bg-white/30 animate-pulse delay-200"></div>
+    </div>
+  </main>
+
+  <footer class="fixed bottom-0 w-[375px] flex justify-between items-center px-6 py-8 bg-gray-900/80 backdrop-blur">
+    <!-- Wrap the Cancel button in an <a> tag to navigate to home.html -->
+    <a href="home.html">
+      <button class="px-6 py-2 rounded-lg bg-white/10 text-white text-sm font-medium">
+        Cancel
+      </button>
+    </a>
+    <!-- Updated Report Issue button -->
+    <a href="rating.html">
+      <button class="p-3 rounded-full bg-white/10 text-white hover:bg-white/20">
+        <i class="fas fa-comment text-xl"></i>
+      </button>
+    </a>
+  </footer>
+</div>
+
+<style>
+  @keyframes scan {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(140px); }
+  }
+  .animate-scan {
+    animation: scan 2s linear infinite;
+  }
+</style>
+</body>
+</html>
